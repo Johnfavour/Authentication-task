@@ -1,16 +1,21 @@
 {
-    "version": 2,
     "builds": [
       {
-        "src": "server.js",
+        "src": "./index.js",
         "use": "@vercel/node"
       }
     ],
     "routes": [
       {
-        "src": "/(.*)",
-        "dest": "server.js"
+        "src": "/api/(.*)",
+        "dest": "/index.js"
       }
-    ]
+    ],
+    "env": {
+      "DB_USER": "@db_user",
+      "DB_PASSWORD": "@db_password",
+      "DB_NAME": "@db_name",
+      "DB_HOST": "@db_host",
+      "JWT_SECRET": "@jwt_secret"
+    }
   }
-  
