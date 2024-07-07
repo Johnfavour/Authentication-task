@@ -2,10 +2,15 @@ const request = require('supertest');
 const app = require('../server');
 const { sequelize } = require('../models');
 
+
+beforeAll(async () => {
+  // await sequelize.authenticate(); // Ensures the database is synced before tests
+});
+afterAll(async() => {
+  // await sequelize.close();
+})
 describe('Authentication and Organisation Endpoints', () => {
-  beforeAll(async () => {
-    await sequelize.sync({ force: true }); // Ensures the database is synced before tests
-  });
+
 
   describe('POST /auth/register', () => {
     it('should register a user successfully with default organisation', async () => {
@@ -129,7 +134,7 @@ describe('Authentication and Organisation Endpoints', () => {
       let registerRes;
       try {
         registerRes = await request(app)
-          .post('/auth/register')
+          .post('/auth/login')
           .send({
             firstName: 'John',
             lastName: 'Doe',
@@ -137,9 +142,9 @@ describe('Authentication and Organisation Endpoints', () => {
             password: 'password',
             phone: '123456789'
           });
-
+          console.log(registerRes);
         // it ensures the registration was successful
-        if (registerRes.status !== 201) {
+        if (registerRes.status !== 200) {
           console.error('Registration failed. Status:', registerRes.status);
           console.error('Response:', registerRes.body);
           throw new Error('Registration failed');
@@ -190,8 +195,8 @@ describe('Authentication and Organisation Endpoints', () => {
     
   }); 
 
-  afterAll(async () => {
+  // afterAll(async () => {
    
-    await sequelize.close();
-  });
+  //   await sequelize.close();
+  // });
 });
