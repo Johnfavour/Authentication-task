@@ -1,7 +1,7 @@
 {
     "builds": [
       {
-        "src": "./server.js",
+        "src": "/server.js",
         "use": "@vercel/node"
       }
     ],
@@ -10,12 +10,5 @@
         "src": "/api/(.*)",
         "dest": "/server.js"
       }
-    ],
-    "env": {
-      "DB_USER": "@db_user",
-      "DB_PASSWORD": "@db_password",
-      "DB_NAME": "@db_name",
-      "DB_HOST": "@db_host",
-      "JWT_SECRET": "@jwt_secret"
-    }
+    ]
   }
