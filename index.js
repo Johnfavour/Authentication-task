@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const sequelize = require('./config/database'); // Adjust the path as per your project structure
+const { sequelize } = require('./models');
 const authRoutes = require('./routes/auth');
 const organisationRoutes = require('./routes/organisation');
 
@@ -19,4 +19,4 @@ sequelize.authenticate().then(() => {
   });
 });
 
-module.exports = app;
+module.exports = app; 
