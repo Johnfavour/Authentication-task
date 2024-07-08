@@ -2,7 +2,6 @@ const request = require('supertest');
 const app = require('../index');
 const { sequelize } = require('../models');
 
-
 beforeAll(async () => {
   // await sequelize.authenticate(); // Ensures the database is synced before tests
 });
