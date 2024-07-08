@@ -37,4 +37,4 @@ const sequelize = new Sequelize(postgresUrl, {
   }
 });
 
-module.exports = sequelize;
+module.exports = sequelize;

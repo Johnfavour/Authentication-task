@@ -3,14 +3,16 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/database.js'); // Import config object
-const db = {};
+const POSTGRES_URL = process.env.POSTGRES_URL; 
+const db = {}; // Object that holds the models
 
-const sequelize = new Sequelize(config.database, config.username, config.password, {
-  host: config.host,
-  dialect: config.dialect,
+
+const sequelize = new Sequelize(POSTGRES_URL, {
+  dialect: 'postgres', 
+  logging: false, 
 });
 
+// Helps to authenticate the connection
 sequelize.authenticate()
   .then(() => {
     console.log('Database connection has been established successfully.');
@@ -19,6 +21,7 @@ sequelize.authenticate()
     console.error('Unable to connect to the database:', err);
   });
 
+
 fs
   .readdirSync(__dirname)
   .filter(file => {
@@ -26,8 +29,9 @@ fs
   })
   .forEach(file => {
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    db[model.name] = model;
+    db[model.name] = model; 
   });
+
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
@@ -38,5 +42,5 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-module.exports = db;
 
+module.exports = db;
