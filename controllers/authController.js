@@ -43,7 +43,7 @@ exports.register = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(400).json({ status: 'Bad request', message: 'Registration failed', statusCode: 400 });
+    res.status(400).json({ status: 'Bad request', message: 'Registration unsuccessful', statusCode: 400 });
   }
 };
 
@@ -78,6 +78,6 @@ exports.login = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(400).json({ status: 'Bad request', message: 'Login failed', statusCode: 400 });
+    res.status(400).json({ status: 'Bad request', message: 'Login unsuccessful', statusCode: 400 });
   }
 };
