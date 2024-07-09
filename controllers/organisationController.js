@@ -48,7 +48,7 @@ exports.createOrganisation = async (req, res) => {
       data: organisation
     });
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    res.status(400).json({ status: 'Bad request', message: 'Client error', statusCode: 400});
   }
 };
 
