@@ -78,6 +78,6 @@ exports.login = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(400).json({ status: 'Bad request', message: 'Login unsuccessful', statusCode: 400 });
+    res.status(401).json({ status: 'Bad request', message: 'Authentication failed', statusCode: 401 });
   }
 };
