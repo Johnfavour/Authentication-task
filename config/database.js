@@ -15,7 +15,7 @@ const sequelize = new Sequelize(postgresUrl, {
   dialectOptions: {
     ssl: {
       require: false,
-      rejectUnauthorized: false 
+      rejectUnauthorized: false
     }
   },
   pool: {
