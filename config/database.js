@@ -14,7 +14,7 @@ const sequelize = new Sequelize(postgresUrl, {
   dialectModule: pg,
   dialectOptions: {
     ssl: {
-      require: true,
+      require: false,
       rejectUnauthorized: false 
     }
   },
